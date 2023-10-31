@@ -17,5 +17,20 @@ module.exports = {
             baseResponse.message = error.message;
             res.status(400).json(baseResponse);
         }
+    },
+    getCredential : async (req, res) => {
+        try {
+            const model = await webChannelCredential.findOne({
+                where : {
+                    id : +req.params.id
+                }
+            })
+            baseResponse.data = model;
+            res.status(200).json(baseResponse)
+        } catch (error) {
+            baseResponse.statusCode = 400;
+            baseResponse.message = error.message;
+            res.status(400).json(baseResponse);
+        }
     }
 }
