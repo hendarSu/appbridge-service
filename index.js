@@ -13,6 +13,10 @@ app.use(express.urlencoded({
     extended: false
 }));
 
+app.use("/", (req, res) => {
+  res.send(`Service woobridge is running!`);
+});
+
 app.use('/api', api);
 
 app.listen(port, () => {
