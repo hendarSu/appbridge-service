@@ -36,7 +36,7 @@ module.exports = {
     getAll : async (req, res) => {
         try {
             // TODO: Need update base on user login
-            const model = await webChannelCredential.find()
+            const model = await webChannelCredential.findAll({})
             baseResponse.data = model;
             res.status(200).json(baseResponse)
         } catch (error) {
