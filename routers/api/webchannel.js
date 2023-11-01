@@ -3,6 +3,7 @@ const webchannelCredentialController = require('../../controllers/webchannel-cre
 const webchannel = express.Router();
 
 webchannel.post('/v1/channelcredentials', webchannelCredentialController.store);
+webchannel.get('/v1/channelcredentials', webchannelCredentialController.getAll);
 webchannel.get('/v1/channelcredentials/:id', webchannelCredentialController.getCredential);
 
 module.exports = webchannel;

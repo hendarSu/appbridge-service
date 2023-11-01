@@ -32,5 +32,17 @@ module.exports = {
             baseResponse.message = error.message;
             res.status(400).json(baseResponse);
         }
+    },
+    getAll : async (req, res) => {
+        try {
+            // TODO: Need update base on user login
+            const model = await webChannelCredential.find()
+            baseResponse.data = model;
+            res.status(200).json(baseResponse)
+        } catch (error) {
+            baseResponse.statusCode = 400;
+            baseResponse.message = error.message;
+            res.status(400).json(baseResponse);
+        }
     }
 }
