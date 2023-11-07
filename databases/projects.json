@@ -1,0 +1,32 @@
+[
+    {
+      "name": "Project 1",
+      "cover": "https://img.freepik.com/free-photo/long-shot-shepherd-walking-field_23-2149744253.jpg?w=2000&t=st=1699060383~exp=1699060983~hmac=16ddd7a7b7882e09da19f2446f628a3fe90121ff522dbff2017d915f6fcdeb4a",
+      "summary": "ome quick example text to build on the card title and make up the bulk of the card's content.",
+      "link": "#",
+      "type": "nature"
+    },
+    {
+      "name": "Project 2",
+      "cover": "https://img.freepik.com/free-photo/man-carrying-hay-full-shot_23-2149744246.jpg?t=st=1699060383~exp=1699060983~hmac=27aee0b742fa6eff7a22982ec146a29b54e0e57f94089dd5cc6e90858ae334e9",
+      "summary": "ome quick example text to build on the card title and make up the bulk of the card's content.",
+      "link": "#",
+      "type": "nature"
+    },
+    {
+      "name": "Project 3",
+      "cover": "https://img.freepik.com/free-photo/aerial-view-private-house-with-solar-panels-roof_181624-14677.jpg",
+      "summary": "ome quick example text to build on the card title and make up the bulk of the card's content.",
+      "link": "#",
+      "type": "moderen"
+
+    },
+    {
+      "name": "Project 4",
+      "cover": "https://img.freepik.com/premium-photo/house-with-solar-photo-voltaic-panels-roof_127089-1495.jpg",
+      "summary": "ome quick example text to build on the card title and make up the bulk of the card's content.",
+      "link": "#",
+      "type": "moderen"
+    }
+  ]
+  
