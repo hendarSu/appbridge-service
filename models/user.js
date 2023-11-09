@@ -49,10 +49,11 @@ module.exports = (sequelize, DataTypes) => {
       return jwt.sign(payload, SECRETTOKEN);
     }
 
-    static generateTokenV2 = async ({ id, email }) => {
+    static generateTokenV2 = async ({ id, email, name }) => {
       const payload = {
         id: id,
-        username: email
+        username: email,
+        fullname : name
       }
 
       return jwt.sign(payload, SECRETTOKEN);

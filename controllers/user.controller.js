@@ -25,11 +25,12 @@ module.exports = {
      */
     loginToken: async (req, res, next) => {
         const { email, password } = req.body;
-        User.authenticateToken({ email, password }).then(async (user) => {
+        user.authenticateToken({ email, password }).then(async (userData) => {
             const data = {
-                id: user.id,
-                username: user.email,
-                accessToken: await User.generateTokenV2({ id: user.id, email: user.email })
+                id: userData.id,
+                name: userData.name,
+                username: userData.email,
+                accessToken: await user.generateTokenV2({ id: userData.id, email: userData.email, name: userData.name }),
             }
             res.status(200).json(base_response(data, "success", "Login Berhasil!"));
         }).catch(err => {
