@@ -5,17 +5,18 @@ const api = express.Router();
 
 const features = require('./../databases/features.json');
 const projects = require('./../databases/projects.json');
+const auth = require('./api/auth');
 
 
+api.use("/", auth);
 api.use('/', webchannel);
-
-api.use('/v1/features', (req, res) => {
+api.get('/v1/features', (req, res) => {
     res.status(200).json({
         message : "data features",
         data: features
     })
 })
-api.use('/v1/projects', (req, res) => {
+api.get('/v1/projects', (req, res) => {
     res.status(200).json({
         message : "data project",
         data: projects

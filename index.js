@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const app = express();
 const port = process.env.PORT || 3000;
 const cors = require('cors');
+const passportJwt = require('./libs/passport-jwt');
 
 app.use(cors());
 
@@ -16,6 +17,8 @@ app.use(express.urlencoded({
     extended: false
 }));
 
+// JWT
+app.use(passportJwt.initialize());
 
 app.use('/api', api);
 
