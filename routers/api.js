@@ -6,9 +6,11 @@ const api = express.Router();
 const features = require('./../databases/features.json');
 const projects = require('./../databases/projects.json');
 const auth = require('./api/auth');
+const upload = require('./api/upload');
 
 
 api.use("/", auth);
+api.use("/v1/upload", upload);
 api.use('/', webchannel);
 api.get('/v1/features', (req, res) => {
     res.status(200).json({
