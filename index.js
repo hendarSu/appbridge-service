@@ -9,16 +9,7 @@ const passportJwt = require('./libs/passport-jwt');
 
 app.use(express.static('uploads'))
 
-app.use(cors(
-  {
-    origin: [
-      'http://localhost:3000/', 
-      'https://appbridge.vercel.app/', 
-      'https://kodingberuang.vercel.app/'
-    ],
-    optionsSuccessStatus: 200 // Force status 200 instead of 204 for legacy compatibility
-  }
-));
+app.use(cors());
 
 app.use(morgan('dev'));
 
