@@ -7,14 +7,23 @@ const port = process.env.PORT || 3000;
 const cors = require('cors');
 const passportJwt = require('./libs/passport-jwt');
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: [
+      'http://localhost:3000/', 
+      'https://appbridge.vercel.app/', 
+      'https://kodingberuang.vercel.app/'
+    ],
+    optionsSuccessStatus: 200 // Force status 200 instead of 204 for legacy compatibility
+  }
+));
 
 app.use(morgan('dev'));
 
 // built in Middleware
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: false
+  extended: false
 }));
 
 // JWT
