@@ -16,7 +16,7 @@ const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
         cb(null, true);
     } else {
-        cb(new Error('Maaf File yang bisa di upload hanya gambar.', false))
+        cb(new Error('Maaf File yang bisa di upload hanya gambar.'), false)
     }
 }
 
