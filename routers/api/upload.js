@@ -6,6 +6,14 @@ const upload = express.Router()
 
 const fs = require('fs');
 
+upload.post('/profile', uploader.single('file'), async (req, res) => {
+    res.status(200).json({
+        message: "upload berhasil",
+        data: (process.env.NODE_ENV !== 'production') ? process.env.BASEURL + ':' + process.env.PORT + "/" + req.file.filename :
+            process.env.BASEURL + "/" + req.file.filename
+    })
+})
+
 upload.post('/product', uploader.single('file'), async (req, res) => {
     const { url } = await uploadCloudinary(req.file.path);
 
@@ -18,22 +26,6 @@ upload.post('/product', uploader.single('file'), async (req, res) => {
         res.status(400).json({
             message: "upload gagal!",
             url: null
-        })
-    }
-})
-
-upload.post('/profile', uploader.single('file'), async (req, res) => {
-    const result = await uploadCloudinary(req.file.path);
-
-    if (result) {
-        res.status(200).json({
-            message: "upload berhasil!",
-            result: result
-        })
-    } else {
-        res.status(400).json({
-            message: "upload gagal!",
-            result: null
         })
     }
 })

@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000;
 const cors = require('cors');
 const passportJwt = require('./libs/passport-jwt');
 
+app.use(express.static('uploads'))
+
 app.use(cors(
   {
     origin: [
