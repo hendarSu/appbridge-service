@@ -61,3 +61,4 @@ upload.post('/product-minio', uploader.single('file'), async (req, res) => {
 })
 
 module.exports = upload;
+

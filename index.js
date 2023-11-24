@@ -9,7 +9,9 @@ const passportJwt = require('./libs/passport-jwt');
 
 app.use(express.static('uploads'))
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 app.use(morgan('dev'));
 
