@@ -6,7 +6,6 @@ const {
 const bcrypt = require('bcrypt');
 
 const jwt = require("jsonwebtoken");
-const SECRETTOKEN = require('../libs/secret');
 
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
@@ -40,23 +39,30 @@ module.exports = (sequelize, DataTypes) => {
 
     static checkPassword = (password, passwordHash) => bcrypt.compareSync(password, passwordHash);
 
+    /**
+     * @deprecated 
+     * @returns 
+     */
     static generateToken = async () => {
       const payload = {
         id: this.id,
         username: this.email
       }
 
-      return jwt.sign(payload, SECRETTOKEN);
+      return jwt.sign(payload, process.env.SECRETTOKEN);
     }
 
     static generateTokenV2 = async ({ id, email, name }) => {
       const payload = {
-        id: id,
-        username: email,
-        fullname : name
+        sub: "payload",
+        usr: {
+          id: id,
+          email: email,
+          name: name
+        }
       }
 
-      return jwt.sign(payload, SECRETTOKEN);
+      return jwt.sign(payload, process.env.SECRETTOKEN, { expiresIn: '1h' });
     }
 
     static authenticateToken = async ({ email, password }) => {

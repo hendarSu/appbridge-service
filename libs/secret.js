@@ -1,3 +1,0 @@
-const SECRETTOKEN = "BINAR2023WV28";
-
-module.exports = SECRETTOKEN;
