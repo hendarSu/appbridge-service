@@ -21,9 +21,11 @@ auth.get("/v1/auth/google",
  * Redirect to home page after login with google (record token to cookie)
  */
 auth.get("/v1/auth/google/redirect",
+    // Set session server
     passport.authenticate("google", {
         failureRedirect: "/"
     }),
+    
     userController.loginTokenGoogle
 );
 

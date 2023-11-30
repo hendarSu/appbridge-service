@@ -48,6 +48,21 @@ module.exports = {
         }
 
         res.status(200).json(base_response(data, "success", "Login Berhasil!"));
+    },
+
+    loginTokenGoogleFromDatabse: async (req, res, next) => {
+        const userData = req.user;
+        user.authenticateGoogleToken({ email : userData.emails[0].value }).then(async (userData) => {
+            const data = {
+                id: userData.id,
+                name: userData.name,
+                username: userData.email,
+                accessToken: await user.generateTokenV2({ id: userData.id, email: userData.email, name: userData.name }),
+            }
+            res.status(200).json(base_response(data, "success", "Login Berhasil!"));
+        }).catch(err => {
+            res.status(401).json(base_response(null, "failed", err));
+        })
     }
     
 }

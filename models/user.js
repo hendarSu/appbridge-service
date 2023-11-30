@@ -81,6 +81,19 @@ module.exports = (sequelize, DataTypes) => {
         return Promise.reject(error);
       }
     }
+    static authenticateGoogleToken = async ({ email }) => {
+      try {
+        const user = await this.findOne({
+          where: { email: email }
+        });
+
+        if (!user) return Promise.reject("User tidak terdaftar!");
+
+        return Promise.resolve(user);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
   }
   user.init({
     email: DataTypes.STRING,
