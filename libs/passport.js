@@ -7,7 +7,7 @@ const authenticate = (req, accessToken, refreshToken, profile, done) => {
     console.log(profile);
 
     // TODO: Record User to database
-    // TODO: check if user exists in database
+    // TODO: check if user exists in database, skip or update user
 
     done(null, profile);
 };
