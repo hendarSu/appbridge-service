@@ -11,7 +11,9 @@ const options = {
 }
 
 passportJwt.use(new JwtStrategy(options, async (payload, done) => {
-    user.findByPk(payload.usr.id).then(user => done(null, user)).catch(err => done(err, false));
-}))
+    const user = payload.usr;
+    done(null, user);
+    // user.findByPk(payload.usr.id).then(user => done(null, user)).catch(err => done(err, false));
+}));
 
 module.exports = passportJwt;
