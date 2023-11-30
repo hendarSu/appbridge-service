@@ -7,6 +7,9 @@ const port = process.env.PORT || 3000;
 const cors = require('cors');
 const passportJwt = require('./libs/passport-jwt');
 
+const session = require('express-session');
+const passport = require('./libs/passport');
+
 app.use(express.static('uploads'))
 
 app.use(cors({
@@ -24,12 +27,26 @@ app.use(express.urlencoded({
 // JWT
 app.use(passportJwt.initialize());
 
+// Session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api', api);
 
-app.use("/", (req, res) => {
-  res.send(`Service woobridge is running!`);
+app.use("/",(req, res) => {
+  const user = req.user;
+  if (user) {
+    res.send(`Selamat Datang : ${user.displayName}!`);
+  } else {
+    res.send(`Service woobridge is running!`);
+  }
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
