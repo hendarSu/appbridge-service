@@ -36,5 +36,18 @@ module.exports = {
         }).catch(err => {
             res.status(401).json(base_response(null, "failed", err));
         })
+    },
+
+    loginTokenGoogle: async (req, res, next) => {
+        const userData = req.user;
+        const data = {
+            id: userData.id,
+            name: userData.displayName,
+            username: userData.emails[0].value,
+            accessToken: await user.generateTokenV2({ id: userData.id, email: userData.email, name: userData.name }),
+        }
+
+        res.status(200).json(base_response(data, "success", "Login Berhasil!"));
     }
+    
 }

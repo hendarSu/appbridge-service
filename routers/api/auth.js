@@ -22,9 +22,9 @@ auth.get("/v1/auth/google",
  */
 auth.get("/v1/auth/google/redirect",
     passport.authenticate("google", {
-        successRedirect: "/",
         failureRedirect: "/"
     }),
+    userController.loginTokenGoogle
 );
 
 module.exports = auth;
