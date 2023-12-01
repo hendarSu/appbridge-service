@@ -31,15 +31,15 @@ app.use(express.urlencoded({
 // JWT
 app.use(passportJwt.initialize());
 
-// Session
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-}));
+// // Session
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+// }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // swagger config
 const specs = swaggerJsdoc(swagger.swaggerOption);
