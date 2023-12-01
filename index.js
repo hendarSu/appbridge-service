@@ -1,5 +1,9 @@
 require('dotenv').config();
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swagger = require('./config/swagger');
+
 const api = require('./routers/api');
 const morgan = require('morgan');
 const app = express();
@@ -37,16 +41,21 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// swagger config
+const specs = swaggerJsdoc(swagger.swaggerOption);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+// end swagger config
+
 app.use('/api', api);
 
-app.use("/",(req, res) => {
-  const user = req.user;
-  if (user) {
-    res.send(`Selamat Datang : ${user.displayName}!`);
-  } else {
-    res.send(`Service woobridge is running!`);
-  }
-});
+// app.use("/",(req, res) => {
+//   const user = req.user;
+//   if (user) {
+//     res.send(`Selamat Datang : ${user.displayName}!`);
+//   } else {
+//     res.send(`Service woobridge is running!`);
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
