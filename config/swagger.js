@@ -23,7 +23,7 @@ module.exports = {
                     url: "http://localhost:" + process.env.PORT,
                 },
                 {
-                    url: "https://appribdge.cyclic.app",
+                    url: "https://api.student.literacode.com",
                 },
             ],
             security: [{
