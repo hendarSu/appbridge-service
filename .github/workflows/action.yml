@@ -30,8 +30,6 @@ jobs:
     steps:
     - name: Deploy to EC2
       run: |
-        scp -i ${{ secrets.EC2_SSH_KEY }} -r . ubuntu@ec2-18-141-173-143.ap-southeast-1.compute.amazonaws.com:/home/ubuntu/deploy
-
         ssh -i ${{ secrets.EC2_SSH_KEY }} ubuntu@ec2-18-141-173-143.ap-southeast-1.compute.amazonaws.com << 'EOF'
           cd /home/ubuntu/deploy
           npm install
