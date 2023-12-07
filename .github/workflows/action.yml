@@ -47,6 +47,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          cd ${{ secrets.EC2_FOLDER }}
           npm install
           sudo pm2 delete backend
           sudo pm2 start index.js --name backend
