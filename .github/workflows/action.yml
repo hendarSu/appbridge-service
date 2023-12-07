@@ -30,7 +30,7 @@ jobs:
     steps:
     - name: Deploy to EC2
       run: |
-        ssh -i ./pem/key.pem {{ secrets.EC2_HOST_IP }} << 'EOF'
+        ssh -i ./key.pem {{ secrets.EC2_HOST_IP }} << 'EOF'
           cd {{ secrets.EC2_FOLDER}}
           npm install
           sudo pm2 restart backend
