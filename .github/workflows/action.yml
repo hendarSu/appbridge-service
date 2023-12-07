@@ -30,10 +30,10 @@ jobs:
     steps:
     - name: Deploy to EC2
       run: |
-        scp -i echo ${{ secrets.EC2_SSH_KEY }} -r . ubuntu@ec2-18-141-173-143.ap-southeast-1.compute.amazonaws.com:/home/ubuntu/deploy
+        scp -i ./pem/key.pem {{ secrets.EC2_HOST_IP }}:{{ secrets.EC2_FOLDER}}
 
-        ssh -i ${{ secrets.EC2_SSH_KEY }} ubuntu@ec2-18-141-173-143.ap-southeast-1.compute.amazonaws.com << 'EOF'
-          cd /home/ubuntu/deploy
+        ssh -i ./pem/key.pem {{ secrets.EC2_HOST_IP }} << 'EOF'
+          cd {{ secrets.EC2_FOLDER}}
           npm install
           sudo pm2 restart backend
         EOF
