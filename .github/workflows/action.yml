@@ -30,8 +30,6 @@ jobs:
     steps:
     - name: Deploy to EC2
       run: |
-        scp -i ./pem/key.pem {{ secrets.EC2_HOST_IP }}:{{ secrets.EC2_FOLDER}}
-
         ssh -i ./pem/key.pem {{ secrets.EC2_HOST_IP }} << 'EOF'
           cd {{ secrets.EC2_FOLDER}}
           npm install
