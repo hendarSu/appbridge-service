@@ -39,3 +39,9 @@ jobs:
         remote_host: "${{ secrets.EC2_HOST }}"
         remote_user: ubuntu
         remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+        script: |
+          cd "${{ secrets.EC2_FOLDER }}"
+          git pull origin main
+          npm install
+          pm2 delete backend
+          pm2 start index.js --name backend
