@@ -43,5 +43,5 @@ jobs:
           cd "${{ secrets.EC2_FOLDER }}"
           git pull origin main
           npm install
-          pm2 delete backend
-          pm2 start index.js --name backend
+          sudo pm2 delete backend
+          sudo pm2 start index.js --name backend
