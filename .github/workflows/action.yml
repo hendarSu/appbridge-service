@@ -25,6 +25,7 @@ jobs:
     #   run: npm test
 
   deploy_cd:
+    needs: build_ci
     runs-on: ubuntu-latest
   
     steps:
