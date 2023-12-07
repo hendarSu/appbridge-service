@@ -28,10 +28,12 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-    - name: Deploy to EC2
-      run: |
-        ssh -i ./key.pem {{ secrets.EC2_HOST_IP }} << 'EOF'
-          cd {{ secrets.EC2_FOLDER}}
-          npm install
-          sudo pm2 restart backend
-        EOF
+    - name: deployment
+        uses: burnett01/rsync-deployments@5.1
+        with:
+          switches: -avzr --delete
+          path: ./*
+          remote_path: ${{ secrets.EC2_FOLDER }}
+          remote_host: ${{ secrets.EC2_HOST }
+          remote_user: ubuntu
+          remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
